@@ -21,7 +21,7 @@ def english_to_french(englishText):
     ibm_translation = language_translator.translate(
         text=englishText,
         model_id=en_to_fr_format).get_result()
-    return ibm_translation
+    return ibm_translation["translations"][0]["translation"]
 
 
 def french_to_english(frenchText):
@@ -29,4 +29,4 @@ def french_to_english(frenchText):
     ibm_translation = language_translator.translate(
         text=frenchText,
         model_id=fr_to_en_format).get_result()
-    return ibm_translation
+    return ibm_translation["translations"][0]["translation"]
