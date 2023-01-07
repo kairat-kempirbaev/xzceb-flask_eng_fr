@@ -24,7 +24,7 @@ def english_to_french(english_text):
 
     if None is english_text or 0 is len(english_text) :
         raise ValueError('Wrong input')
-        
+
     ibm_translation = language_translator.translate(
         text=english_text,
         model_id=EN_TO_FR_FORMAT).get_result()
