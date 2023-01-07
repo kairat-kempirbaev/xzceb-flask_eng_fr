@@ -1,32 +1,37 @@
-import json
+'''Module will use IBM watson service to make bidirectional english-french translation'''
+
+import os
 from ibm_watson import LanguageTranslatorV3
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
-apikey = os.environ['apikey']
-url = os.environ['url']
-version = "2022-11-29"
-authenticator = IAMAuthenticator(apikey)
+API_KEY = os.environ['apikey']
+URL = os.environ['url']
+VERSION = "2022-11-29"
+authenticator = IAMAuthenticator(API_KEY)
 language_translator = LanguageTranslatorV3(
-    version=version,
+    version=VERSION,
     authenticator=authenticator
 )
-language_translator.set_service_url(url)
+language_translator.set_service_url(URL)
 
+EN_TO_FR_FORMAT = "en-fr"
+FR_TO_EN_FORMAT = "fr-en"
 
-def english_to_french(englishText):
-    en_to_fr_format = "en-fr"
+def english_to_french(english_text):
+    '''Translate english to french, only text'''
+
     ibm_translation = language_translator.translate(
-        text=englishText,
-        model_id=en_to_fr_format).get_result()
+        text=english_text,
+        model_id=EN_TO_FR_FORMAT).get_result()
     return ibm_translation["translations"][0]["translation"]
 
 
-def french_to_english(frenchText):
-    fr_to_en_format = "fr-en"
+def french_to_english(french_text):
+    '''Translate  french to english, only text'''
+
     ibm_translation = language_translator.translate(
-        text=frenchText,
-        model_id=fr_to_en_format).get_result()
+        text=french_text,
+        model_id=FR_TO_EN_FORMAT).get_result()
     return ibm_translation["translations"][0]["translation"]
