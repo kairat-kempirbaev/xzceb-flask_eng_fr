@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import unittest
 from translator import french_to_english, english_to_french
 

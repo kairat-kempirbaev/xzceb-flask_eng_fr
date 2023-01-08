@@ -22,7 +22,7 @@ FR_TO_EN_FORMAT = "fr-en"
 def english_to_french(english_text):
     '''Translate english to french, only text'''
 
-    if None is english_text or 0 is len(english_text) :
+    if None is english_text or 0 == len(english_text) :
         raise ValueError('Wrong input')
 
     ibm_translation = language_translator.translate(
@@ -33,7 +33,7 @@ def english_to_french(english_text):
 
 def french_to_english(french_text):
     '''Translate  french to english, only text'''
-    if None is french_text or 0 is len(french_text) :
+    if None is french_text or 0 == len(french_text) :
         raise ValueError('Wrong input')
 
     ibm_translation = language_translator.translate(
